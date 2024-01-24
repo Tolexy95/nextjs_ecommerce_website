@@ -43,6 +43,7 @@ export function CartSummary() {
           <dt className="text-base font-medium">Order total</dt>
           <dd className="text-base font-medium">$ {orderTotal}</dd>
         </div>
+        {/*for development purpose only */}
         <button onClick={handleReset}>Reset</button>
       </dl>
     </section>

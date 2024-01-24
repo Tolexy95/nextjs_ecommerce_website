@@ -203,7 +203,7 @@ const ProductInfo: React.FC<{ product: Product }> = ({ product }) => {
             >
               <MdOutlineFavoriteBorder className="" />
             </button>
-
+{/*for development purpose only */}
             <button onClick={handleReset}>Reset</button>
           </div>
         </div>
