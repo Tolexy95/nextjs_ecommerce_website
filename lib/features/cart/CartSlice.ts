@@ -2,48 +2,41 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { CartItem } from "@/app/types/types";
 
-interface CartItem {
-  _id: number;
-  title: string;
-  price: number;
-  quantity: number;
-  images:string;
-  thumbnail: string;
-  description:string;
-}
 
 interface CartState {
   cartItems: CartItem[];
   totalPrice: number;
   totalQuantities: number;
   quantity: number;
-  isCartOpen: boolean;
 }
 
 const initialState: CartState = {
-  cartItems: JSON.parse(localStorage.getItem("cartItems") ?? "[]") as CartItem[],
-  totalPrice: Number(localStorage.getItem("totalPrice")) || 0,
-  totalQuantities: Number(localStorage.getItem("totalQuantities")) || 0,
+  cartItems: [],
+  totalPrice: 0,
+  totalQuantities: 0,
   quantity: 1,
-  isCartOpen: false, 
 };
 
+// Check if localStorage is available before using it
+if (typeof window !== 'undefined' && window.localStorage) {
+  initialState.cartItems = JSON.parse(localStorage.getItem("cartItems") ?? "[]") as CartItem[];
+  initialState.totalPrice = Number(localStorage.getItem("totalPrice")) || 0;
+  initialState.totalQuantities = Number(localStorage.getItem("totalQuantities")) || 0;
+}
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    toggleCartOpen: (state) => {
-      state.isCartOpen = !state.isCartOpen;
-    },
     addToCart: (
       state,
       action: PayloadAction<{ product: CartItem; quantity: number }>
     ) => {
       const { product, quantity } = action.payload;
       const checkProductInCart = state.cartItems.find(
-        (item) => item._id === product._id
+        (item) => item.id === product.id
       );
 
       state.totalPrice += product.price * quantity;
@@ -51,7 +44,7 @@ const cartSlice = createSlice({
 
       if (checkProductInCart) {
         const updatedCartItems = state.cartItems.map((cartProduct) => {
-          if (cartProduct._id === product._id) {
+          if (cartProduct.id === product.id) {
             return {
               ...cartProduct,
               quantity: cartProduct.quantity + quantity,
@@ -87,14 +80,14 @@ const cartSlice = createSlice({
     onRemove: (state, action: PayloadAction<CartItem>) => {
       let getProduct;
     
-      getProduct = state.cartItems.find((item) => item._id === action.payload._id);
+      getProduct = state.cartItems.find((item) => item.id === action.payload.id);
     
       if (getProduct) {
         // Update total quantities and total price before removing the item
         state.totalQuantities -= getProduct.quantity;
         state.totalPrice -= getProduct.price * getProduct.quantity;
     
-        state.cartItems = state.cartItems.filter((item) => item._id !== action.payload._id);
+        state.cartItems = state.cartItems.filter((item) => item.id !== action.payload.id);
       }
     
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
@@ -109,7 +102,7 @@ const cartSlice = createSlice({
       action: PayloadAction<{ productId: number; newQuantity: number }>
     ) => {
       const foundProductIndex = state.cartItems.findIndex(
-        (item) => item._id === action.payload.productId
+        (item) => item.id === action.payload.productId
       );
 
       if (foundProductIndex !== -1) {
@@ -150,7 +143,6 @@ const cartSlice = createSlice({
 });
 
 export const {
-  toggleCartOpen,
   addToCart,
   incQty,
   decQty,

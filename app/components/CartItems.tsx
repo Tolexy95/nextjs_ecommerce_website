@@ -19,7 +19,7 @@ export function CartItems() {
       className="divide-y divide-gray-600 border-y border-gray-600 dark:divide-gray-500 dark:border-gray-500 font-montserrat"
     >
       {cartItems.map((product, productIdx) => (
-        <div key={product._id} className="flex flex-col md:flex-row md:justify-between md:items-start md:gap-8 gap-4 py-6 sm:py-10">
+        <div key={product.id} className="flex flex-col md:flex-row md:justify-between md:items-start md:gap-8 gap-4 py-6 sm:py-10">
           <div className="rounded-lg border-5 border-gray-600 bg-gray-100 group-hover:opacity-75 dark:border-gray-800">
             <Image
               placeholder="blur"
@@ -35,7 +35,6 @@ export function CartItems() {
             <div className="flex flex-col gap-3 md:gap-8">
               <h3 className="text-sm">{product.title}</h3>
               <p className="text-sm font-semibold">$ {product.price}</p>
-              <p className="text-sm font-semibold">{product.description}</p>
               <h1 className="font-bold text-lg">Total price: <span className="font-normal">$ {product.price * product.quantity}</span></h1>
             </div>
 
@@ -59,7 +58,7 @@ export function CartItems() {
                     // Dispatch the handleQuantityChange action with the correct payload
                     dispatch(
                       handleQuantityChange({
-                        productId: product._id,
+                        productId: product.id,
                         newQuantity,
                       })
                     );

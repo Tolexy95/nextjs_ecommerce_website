@@ -2,15 +2,8 @@
 
 import { shimmer, toBase64 } from "@/lib/image";
 import Image from "next/image";
+import { Product } from "../types/types";
 
-interface Product {
-  id: number;
-  images: string;
-  title: string;
-  category: string;
-  price: string;
-  discountPercentage: string;
-}
 
 const ProductGallery: React.FC<{ product: Product }> = ({ product }) => {
   // Check if 'product' and 'product.images' are defined before accessing 'images'

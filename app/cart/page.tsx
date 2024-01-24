@@ -5,10 +5,9 @@ import { CartSummary } from "../components/CartSummary"
 import { IoMdClose } from "react-icons/io";
 
 interface CartPopPageProps {
-  onClose: () => void;
 }
 
-const CartPopPage: React.FC<CartPopPageProps> = ({ onClose }) => {
+const CartPage: React.FC<CartPopPageProps> = () => {
   return (
     <div className="px-10 bg-[hsl(210,26%,78%,0.1)] relative ">  
       <main className="mx-auto  px-4 pb-24 pt-16 sm:px-6">
@@ -28,12 +27,8 @@ const CartPopPage: React.FC<CartPopPageProps> = ({ onClose }) => {
           <CartSummary/>
         </form>
       </main>
-
-      <button type="button" onClick={onClose} className="absolute top-0 right-0 p-10">
-        <IoMdClose className="w-9 h-9 font-bold" />
-      </button>
     </div>
   )
 }
 
-export default CartPopPage;
+export default CartPage;

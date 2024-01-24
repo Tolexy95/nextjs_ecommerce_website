@@ -4,16 +4,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { Product } from "../types/types";
 
-interface Product {
-  id: number;
-  images: string;
-  title: string;
-  category: string;
-  price: string;
-  discountPercentage: string;
-  description: string;
-}
+
 
 const ProductGrid: React.FC<{ products: Product[] }> = ({ products }) => {
   return (
@@ -37,8 +30,7 @@ const ProductGrid: React.FC<{ products: Product[] }> = ({ products }) => {
                 component="div"
                 style={{ fontSize: "18px", fontWeight: 'bold', color: 'hsla(228, 28%, 20%, 1)'}}
                 >
-              
-                {product.title}
+                 {product.title}
               </Typography>
 
               <Typography

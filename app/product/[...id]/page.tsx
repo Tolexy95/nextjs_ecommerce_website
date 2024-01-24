@@ -8,13 +8,16 @@ import ProductInfo from "@/app/components/ProductInfo";
 import { useGetAllProductsQuery } from "@/app/api/apiSlice";
 
 interface ProductDetailsProps {
-  id: string;
+  id: number;
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = () => {
-  const { id } = useParams();
+  const {id} = useParams();
 
-  const { data: product } = useGetIndividualProductQuery(id);
+  // Convert the string id to a number
+  const productId: number = +id;
+
+  const { data: product } = useGetIndividualProductQuery(productId);
   const { data: productData } = useGetAllProductsQuery("");
 
   return (

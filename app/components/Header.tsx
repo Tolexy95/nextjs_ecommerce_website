@@ -15,11 +15,7 @@ import { IconButton } from "@mui/material";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { FaUser } from "react-icons/fa6";
 import { FaAngleDown } from "react-icons/fa";
-import { useAppSelector, useAppDispatch } from "@/lib/hooks";
-import CartPopPage from "../cart/page";
-import WishListPage from "../wishlist/page";
-import { toggleCartOpen } from "@/lib/features/cart/CartSlice";
-import { toggleWishlist } from "@/lib/features/wishlist/productWishlistSlice";
+import { useAppSelector} from "@/lib/hooks";
 
 
 
@@ -49,23 +45,15 @@ const ContactInfo: React.FC = () => (
 );
 
 const Navigation: React.FC = () => {
-  const dispatch = useAppDispatch();
   const [isNavOpen, setIsNavOpen] = useState(false);
   
   // Retrieve cart quantity from Redux state
   const totalQuantities = useAppSelector((state) => state.cart.totalQuantities);
   const totalWishlist = useAppSelector((state) => state.wishlist.totalWishlist);
 
-  const isCartOpen =useAppSelector((state) => state.cart.isCartOpen);
-  const isWishlistOpen=useAppSelector((state) => state.wishlist.isWishlistOpen);
- 
 
   return (
     <>
-      {/* Conditionally render CartPopPage */}
-      {isCartOpen && <CartPopPage onClose={() => dispatch(toggleCartOpen())} />}
-      {isWishlistOpen && <WishListPage onClose={() => dispatch(toggleWishlist())} />}
-      {!isCartOpen && !isWishlistOpen && (
         <div className="flex items-center justify-between px-6 mt-7">
           <h3 className="text-blue-dark text-2xl font-bold">Bandage</h3>
           <ul className="DESKTOP-MENU hidden lg:flex items-center font-bold text-gray-light gap-5 ">
@@ -113,11 +101,10 @@ const Navigation: React.FC = () => {
             <IoSearchOutline className="" />
 
             <div className="flex items-center gap-2">
-              <Link href="">
+              <Link href="/cart">
                 <button
                   type="button"
                   className="flex items-center gap-3"
-                  onClick={() => dispatch(toggleCartOpen())}
                 >
                   <IoCartSharp className="h-5 w-5" />
                   <span className="text-sm font-bold">{totalQuantities}</span>
@@ -127,11 +114,10 @@ const Navigation: React.FC = () => {
 
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-2">
-                <Link href="">
+                <Link href="/wishlist">
                   <button
                     type="button"
                     className="flex items-center gap-3"
-                    onClick={() => dispatch(toggleWishlist())} 
                   >
                     <MdOutlineFavoriteBorder className="h-5 w-5" />
                     <span className="text-sm font-bold">{totalWishlist}</span>
@@ -228,7 +214,6 @@ const Navigation: React.FC = () => {
             }
           `}</style>
         </div>
-      )}
     </>
   );
 };
