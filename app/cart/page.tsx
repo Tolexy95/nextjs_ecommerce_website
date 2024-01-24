@@ -5,8 +5,7 @@ import { CartSummary } from "../components/CartSummary"
 import { IoMdClose } from "react-icons/io";
 
 interface CartPopPageProps {
-  onClose: () => void;
-  [key: string]: never;
+  onClose: () => never;
 }
 
 const CartPopPage: React.FC<CartPopPageProps> = ({ onClose }) => {

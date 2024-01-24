@@ -8,7 +8,7 @@ import ProductInfo from "@/app/components/ProductInfo";
 import { useGetAllProductsQuery } from "@/app/api/apiSlice";
 
 interface ProductDetailsProps {
-  id: number;
+  id: string;
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = () => {
