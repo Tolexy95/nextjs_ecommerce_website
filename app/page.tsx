@@ -155,8 +155,7 @@ const Home: React.FC<HomeProps> = () => {
               width={72}
               height={72}
             />
-            <img src={arrow} alt="" />
-            <p>Easy wins</p>
+            <h1>Easy wins</h1>
             <p className="">Get your best looking smile now!</p>
           </div>
 
@@ -172,12 +171,10 @@ const Home: React.FC<HomeProps> = () => {
               height={72}
             />
             <h1>Concrete</h1>
-            <div className="">
-              <p>
-                Defalcate is most focused in helping you discover your most
-                beautiful smile
-              </p>
-            </div>
+            <p>
+              Defalcate is most focused in helping you discover your most
+              beautiful smile
+            </p>
           </div>
 
           <div className="flex-col lg:w-[20%] items-center content-center self-center flex justify-center text-center gap-5">
@@ -191,7 +188,7 @@ const Home: React.FC<HomeProps> = () => {
               width={72}
               height={72}
             />
-            <p>Hack Growth</p>
+            <h1>Hack Growth</h1>
             <p>Overcame any hurdle or any other problem.</p>
           </div>
         </div>
@@ -233,7 +230,9 @@ const Home: React.FC<HomeProps> = () => {
             your financial goal.
           </h6>
 
-          <h1 className="text-[hsla(202,87%,54%,1)] font-bold text-xl mt-16">Regina Miles</h1>
+          <h1 className="text-[hsla(202,87%,54%,1)] font-bold text-xl mt-16">
+            Regina Miles
+          </h1>
           <h6 className=" text-blue-dark font-bold text-base mt-3">Designer</h6>
         </div>
 

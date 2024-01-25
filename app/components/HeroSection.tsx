@@ -7,9 +7,10 @@ interface HeroSectionProps {
   width: number;
   height: number;
   priority?: boolean;
+  className?:string;
 }
 
-const backgroundImageOne = "/card-cover-5.png";
+const backgroundImageOne = "/media bg-cover.jpg";
 const backgroundImageTwo = "/card-cover-6.jpg";
 const backgroundImageThree = "/card-cover-6 (1).jpg";
 const backgroundImageFour = "/card-cover-7.jpg";
@@ -20,6 +21,7 @@ const HeroSectionCard: React.FC<HeroSectionProps> = ({
   width,
   height,
   priority,
+  className,
 }) => {
   return (
     <div className="relative">
@@ -30,8 +32,9 @@ const HeroSectionCard: React.FC<HeroSectionProps> = ({
         height={height}
         quality={100}
         priority={priority}
-        className="object-cover w-full  h-full"
+        className ={className}
       />
+
       <div className="absolute top-0 font-bold p-6">
         <h6 className="text-[hsla(148,62%,47%,1)] text-base">5 Items</h6>
         <h3 className="text-blue-dark lg:text-4xl/[50px]">FURNITURE</h3>
@@ -44,23 +47,25 @@ const HeroSectionCard: React.FC<HeroSectionProps> = ({
 const HeroSection: React.FC = () => {
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 mt-9 font-montserrat">
-      <div className="lg:col-start-1 lg:row-start-1  lg:row-end-3">
+      <div className="lg:row-start-1 lg:row-span-3">
         <HeroSectionCard
           backgroundImage={backgroundImageOne}
           alt="Image A"
           width={450}
           height={620}
           priority={true}
+           className="object-cover w-full h-full"   
         />
       </div>
 
-      <div className="lg:col-start-2 lg:row-start-1 lg:col-end-4">
+      <div className="lg:col-start-2 lg:row-start-1 lg:col-span-2">
         <HeroSectionCard
           backgroundImage={backgroundImageTwo}
           alt="Image B"
           width={678}
           height={300}
           priority={true}
+          className="object-cover w-full  h-full"
         />
       </div>
 
@@ -71,6 +76,7 @@ const HeroSection: React.FC = () => {
           width={332}
           height={138}
           priority={true}
+          className="object-cover w-full  h-full"
         />
       </div>
 
@@ -81,6 +87,7 @@ const HeroSection: React.FC = () => {
           width={331}
           height={300}
           priority={true}
+          className="object-cover w-full  h-full"
         />
       </div>
     </div>
